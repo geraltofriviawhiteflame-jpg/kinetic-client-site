@@ -14,11 +14,21 @@ export default function Contact() {
       <p className="text-muted-foreground mb-8 max-w-2xl">Tell us about your project — timelines, goals, and any reference websites you like. We'll get back within 24h.</p>
       <form
         className="grid gap-4 max-w-2xl"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          const data = new FormData(e.currentTarget as HTMLFormElement);
-          toast({ title: "Message sent", description: `Thanks ${data.get('name')}, we'll reach out soon.` });
-          (e.currentTarget as HTMLFormElement).reset();
+          const form = e.currentTarget as HTMLFormElement;
+          const data = new FormData(form);
+          const name = String(data.get('name') || '');
+          const email = String(data.get('email') || '');
+          const message = String(data.get('message') || '');
+          try {
+            const { submitContactMessage } = await import("@/lib/contact");
+            await submitContactMessage({ name, email, message });
+            toast({ title: "Message sent", description: `Thanks ${name}, we'll reach out soon.` });
+            form.reset();
+          } catch (err: any) {
+            toast({ title: "Unable to send", description: err?.message || "Please try again later." });
+          }
         }}
       >
         <div className="grid gap-2">

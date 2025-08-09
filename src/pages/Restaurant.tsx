@@ -12,9 +12,9 @@ import dish2 from "@/assets/dish-2.jpg";
 import dish3 from "@/assets/dish-3.jpg";
 
 const dishes = [
-  { id: 1, name: "Truffle Arancini", price: 12, category: "Starters", img: dish1, desc: "Crispy risotto balls, parmesan, basil aioli." },
-  { id: 2, name: "Herb Roasted Salmon", price: 24, category: "Main", img: dish2, desc: "Seasonal greens, lemon beurre blanc." },
-  { id: 3, name: "Chocolate Lava Cake", price: 10, category: "Dessert", img: dish3, desc: "Warm center, vanilla bean ice cream." },
+  { id: 1, name: "Truffle Arancini", price: 599, category: "Starters", img: dish1, desc: "Crispy risotto balls, parmesan, basil aioli." },
+  { id: 2, name: "Herb Roasted Salmon", price: 1299, category: "Main", img: dish2, desc: "Seasonal greens, lemon beurre blanc." },
+  { id: 3, name: "Chocolate Lava Cake", price: 499, category: "Dessert", img: dish3, desc: "Warm center, vanilla bean ice cream." },
 ];
 
 const categories = Array.from(new Set(dishes.map(d => d.category)));
@@ -57,7 +57,7 @@ export default function Restaurant() {
                   <CardHeader>
                     <CardTitle className="flex items-center justify-between">
                       <span>{d.name}</span>
-                      <span className="text-primary">${d.price}</span>
+                      <span className="text-primary">₹{d.price}</span>
                     </CardTitle>
                   </CardHeader>
                 </Card>

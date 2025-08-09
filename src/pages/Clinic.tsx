@@ -8,15 +8,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { DayPicker } from "react-day-picker";
 import 'react-day-picker/dist/style.css';
 import { toast } from "@/hooks/use-toast";
-import clinicHero from "@/assets/hero-clinic.jpg";
-import doctor1 from "@/assets/doctor-1.jpg";
-import doctor2 from "@/assets/doctor-2.jpg";
-import doctor3 from "@/assets/doctor-3.jpg";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Stethoscope } from "lucide-react";
 
 const doctors = [
-  { id: 1, name: "Dr. Aisha Khan", specialty: "Dentist", photo: doctor1 },
-  { id: 2, name: "Dr. Liam Patel", specialty: "General Physician", photo: doctor2 },
-  { id: 3, name: "Dr. Sofia Marin", specialty: "Cardiologist", photo: doctor3 },
+  { id: 1, name: "Dr. Aisha Khan", specialty: "Dentist" },
+  { id: 2, name: "Dr. Liam Patel", specialty: "General Physician" },
+  { id: 3, name: "Dr. Sofia Marin", specialty: "Cardiologist" },
 ];
 
 const specialties = ["All", ...Array.from(new Set(doctors.map(d => d.specialty)))];
@@ -35,13 +33,16 @@ export default function Clinic() {
   return (
     <main>
       <section className="relative">
-        <img src={clinicHero} alt="Clinic reception area" className="h-[40vh] w-full object-cover" loading="lazy" />
+        <div className="h-[40vh] w-full bg-gradient-to-br from-primary/15 via-secondary/10 to-accent/15" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-background/20" />
-        <div className="container -mt-16 relative">
-          <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="font-display text-4xl md:text-5xl">
-            Willow Health Clinic
-          </motion.h1>
-          <p className="text-muted-foreground mt-2 max-w-2xl">Search doctors, filter by specialty, and book your appointment smoothly.</p>
+        <div className="container -mt-16 relative flex items-center gap-4">
+          <Stethoscope className="h-10 w-10 text-primary" aria-hidden="true" />
+          <div>
+            <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="font-display text-4xl md:text-5xl">
+              Willow Health Clinic
+            </motion.h1>
+            <p className="text-muted-foreground mt-2 max-w-2xl">Search doctors, filter by specialty, and book your appointment smoothly.</p>
+          </div>
         </div>
       </section>
 
@@ -66,7 +67,13 @@ export default function Clinic() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((d) => (
             <Card key={d.id} className="hover-scale overflow-hidden">
-              <img src={d.photo} alt={`${d.name} — ${d.specialty}`} className="h-48 w-full object-cover" loading="lazy" />
+              <div className="h-48 w-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+                <Avatar className="h-20 w-20 shadow">
+                  <AvatarFallback className="bg-primary/20 text-primary font-semibold">
+                    {d.name.split(' ').map(n => n[0]).slice(0,2).join('')}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <span>{d.name}</span>
