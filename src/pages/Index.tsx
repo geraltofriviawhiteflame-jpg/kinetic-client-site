@@ -60,12 +60,12 @@ const Index = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-8 flex items-center gap-3"
+              className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-sm"
             >
-              <Button asChild variant="hero" size="xl" className="hover-scale">
+              <Button asChild variant="hero" size="xl" className="hover-scale w-full sm:w-auto">
                 <Link to="/restaurant">View Restaurant Demo</Link>
               </Button>
-              <Button asChild variant="outline" size="xl">
+              <Button asChild variant="outline" size="xl" className="w-full sm:w-auto">
                 <Link to="/clinic">Explore Clinic Demo</Link>
               </Button>
             </motion.div>

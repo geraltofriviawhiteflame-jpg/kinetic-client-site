@@ -35,7 +35,7 @@ export default function Clinic() {
       <section className="relative">
         <div className="h-[40vh] w-full bg-gradient-to-br from-primary/15 via-secondary/10 to-accent/15" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-background/20" />
-        <div className="container -mt-16 relative flex items-center gap-4">
+        <div className="container -mt-16 relative flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4 py-6">
           <Stethoscope className="h-10 w-10 text-primary" aria-hidden="true" />
           <div>
             <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="font-display text-4xl md:text-5xl">
@@ -52,7 +52,7 @@ export default function Clinic() {
             <h2 id="doctors-heading" className="font-display text-3xl">Doctors</h2>
             <p className="text-muted-foreground">Trusted specialists ready to help.</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {specialties.map(s => (
               <Button key={s} variant={filter === s ? 'hero' : 'outline'} onClick={() => setFilter(s)}>{s}</Button>
             ))}
@@ -75,7 +75,7 @@ export default function Clinic() {
                 </Avatar>
               </div>
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
+                <CardTitle className="flex items-start justify-between gap-2">
                   <span>{d.name}</span>
                   <span className="text-primary text-sm">{d.specialty}</span>
                 </CardTitle>
